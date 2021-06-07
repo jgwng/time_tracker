@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timetracker/ui/views/auth/landing_page.dart';
 import 'package:timetracker/ui/views/splash/splash_page.dart';
 void main() => runApp(new MyApp());
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
 
       ),
 
-      home: SplashScreen(),
+      home: LandingPage(),
     );
   }
 }
