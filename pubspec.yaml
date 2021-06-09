@@ -61,6 +61,11 @@ flutter:
           weight: 500
         - asset: fonts/SpoqaHanSansNeo/SpoqaHanSansNeoBold.otf
           weight: 700
+    - family: Staatliches
+      fonts:
+        - asset: fonts/Staatliches/StaatlichesRegular.ttf
+          weight: 500
+
 
   assets:
     - assets/animations/clock_animation.json
