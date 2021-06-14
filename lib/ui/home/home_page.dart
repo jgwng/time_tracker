@@ -1,72 +1,115 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:timetracker/service/notification/flutter_media_notification.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatefulWidget{
   @override
-  _HomePageState createState() => new _HomePageState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
-  String status = 'hidden';
 
-  @override
-  void initState() {
-    super.initState();
+class _HomePageState extends State<HomePage>{
+  int _currentIndex = 0;
 
-    MediaNotification.setListener('pause', () {
-      setState(() => status = 'pause');
-    });
+  List<GlobalKey<NavigatorState>> _navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+  ];
 
-    MediaNotification.setListener('play', () {
-      setState(() => status = 'play');
-    });
-
-    MediaNotification.setListener('next', () {});
-
-    MediaNotification.setListener('prev', () {});
-
-    MediaNotification.setListener('select', () {});
-  }
+  final List<BottomNavigationBarItem> _bNBItems = [
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.home_outlined),
+      activeIcon: Icon(Icons.home),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.today_outlined),
+      activeIcon: Icon(Icons.today_outlined),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.bar_chart_rounded),
+      activeIcon: Icon(Icons.bar_chart_rounded),
+    ),
+    BottomNavigationBarItem(
+      label: "",
+      icon: Icon(Icons.settings_outlined),
+      activeIcon: Icon(Icons.settings),)
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: new AppBar(
-          title: const Text('Plugin example app'),
+    return WillPopScope(
+      onWillPop: () async {
+        final isFirstRouteInCurrentTab =
+        !await _navigatorKeys[_currentIndex].currentState!.maybePop();
+        return isFirstRouteInCurrentTab;
+      },
+      child: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.white,
+          title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,color: Colors.black),),
+        centerTitle: true,
         ),
-        body: new Center(
-            child: Container(
-              height: 250.0,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  TextButton(
-                      child: Text('Show notification'),
-                      onPressed: () {
-                        MediaNotification.showNotification(
-                            title: 'aaaa', author: 'Author');
-                        setState(() => status = 'play');
-                      }),
-                  TextButton(
-                      child: Text('Update notification'),
-                      onPressed: () {
-                        MediaNotification.showNotification(
-                            title: 'New Title',
-                            author: 'New Song author',
-                            isPlaying: false);
-                        setState(() => status = 'pause');
-                      }),
-                  TextButton(
-                      child: Text('Hide notification'),
-                      onPressed: () {
-                        MediaNotification.hideNotification();
-                        setState(() => status = 'hidden');
-                      }),
-                  Text('Status: ' + status)
-                ],
-              ),
-            )),
-      );
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
+            _buildOffstageNavigator(0),
+            _buildOffstageNavigator(1),
+            _buildOffstageNavigator(2),
+            _buildOffstageNavigator(3),
+
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+
+            onTap: (newValue) {
+              setState(() {
+                if(_currentIndex == newValue){
+                  _navigatorKeys[_currentIndex].currentState!.popUntil((route) => route.isFirst);
+                }else{
+                  _currentIndex = newValue;
+                }
+              });
+            },
+            type: BottomNavigationBarType.fixed,
+            currentIndex: _currentIndex,
+            items: _bNBItems,
+          fixedColor: Colors.indigo,
+        ),
+
+      ),
+    );
+
   }
+
+  Map<String, WidgetBuilder> _routeBuilders(BuildContext context, int index) {
+    return {
+      '/': (context) {
+        return [
+          Container(color: Colors.red,),
+          Container(color: Colors.purple),
+          Container(color: Colors.blue,),
+          Container(color:Colors.green)
+        ].elementAt(index);
+      },
+    };
+  }
+  Widget _buildOffstageNavigator(int index) {
+    var routeBuilders = _routeBuilders(context, index);
+    return Offstage(
+        offstage: _currentIndex != index,
+        child: Navigator(
+          key: _navigatorKeys[index],
+          onGenerateRoute: (routeSettings) {
+            return MaterialPageRoute(
+              builder: (context) => routeBuilders[routeSettings.name]!(context),
+            );
+          },
+        ));
+  }
+
 }

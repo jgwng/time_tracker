@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lottie/lottie.dart';
-import 'package:timetracker/ui/home/home_page.dart';
+import 'package:timetracker/ui/home/practice_page.dart';
 
 class SplashScreen extends StatefulWidget{
   @override
