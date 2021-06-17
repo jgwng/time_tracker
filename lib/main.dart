@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timetracker/ui/home/home_page.dart';
-import 'package:timetracker/ui/views/auth/login_page.dart';
+import 'package:timetracker/ui/views/main_page.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
 
       ),
 
-      home: HomePage(),
+      home: MainPage(),
     );
   }
 }

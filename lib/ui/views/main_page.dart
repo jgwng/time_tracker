@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:timetracker/ui/views/home/home_page.dart';
 
-class HomePage extends StatefulWidget{
+class MainPage extends StatefulWidget{
   @override
-  _HomePageState createState() => _HomePageState();
+  _MainPageState createState() => _MainPageState();
 }
 
 
-class _HomePageState extends State<HomePage>{
+class _MainPageState extends State<MainPage>{
   int _currentIndex = 0;
 
   List<GlobalKey<NavigatorState>> _navigatorKeys = [
@@ -48,11 +49,6 @@ class _HomePageState extends State<HomePage>{
         return isFirstRouteInCurrentTab;
       },
       child: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.white,
-          title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,color: Colors.black),),
-        centerTitle: true,
-        ),
-        backgroundColor: Colors.white,
         body: Stack(
           children: [
             _buildOffstageNavigator(0),
@@ -90,7 +86,7 @@ class _HomePageState extends State<HomePage>{
     return {
       '/': (context) {
         return [
-          Container(color: Colors.red,),
+          HomePage(),
           Container(color: Colors.purple),
           Container(color: Colors.blue,),
           Container(color:Colors.green)
