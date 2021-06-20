@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:timetracker/constants/app_themes.dart';
 import 'package:timetracker/ui/views/auth/local_widget/signUp_login_button.dart';
-import 'package:timetracker/ui/widgets/auth_text_field.dart';
+import 'package:timetracker/ui/widgets/custom_text_field.dart';
 import 'package:timetracker/ui/widgets/standard_button.dart';
 
 class LoginPage extends StatefulWidget{
@@ -56,9 +55,9 @@ class _LoginPageState extends State<LoginPage>{
             SizedBox(height:100,),
             Image.asset('assets/images/auth/stopwatch.png'),
             SizedBox(height: 40,),
-            AuthTFT(labelText: '이메일',controller: emailController!,focusNode: emailNode,),
+            CustomTFT(labelText: '이메일',controller: emailController!,focusNode: emailNode,),
             SizedBox(height: 5),
-            AuthTFT(labelText: '비밀번호',controller: pwController!,focusNode: pwNode,),
+            CustomTFT(labelText: '비밀번호',controller: pwController!,focusNode: pwNode,),
             SizedBox(height: 10),
             StandardButton(title: '로그인', function: (){}),
             SizedBox(height: 30,),

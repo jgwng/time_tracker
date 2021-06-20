@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timetracker/ui/views/auth/local_widget/signUp_login_button.dart';
-import 'package:timetracker/ui/widgets/auth_text_field.dart';
+import 'package:timetracker/ui/widgets/custom_text_field.dart';
 import 'package:timetracker/ui/widgets/standard_button.dart';
 
 class SignUpPage extends StatefulWidget{
@@ -54,11 +54,11 @@ class _SignUpPageState extends State<SignUpPage>{
           SizedBox(height:60,),
           Image.asset('assets/images/auth/stopwatch.png'),
           SizedBox(height: 40,),
-          AuthTFT(labelText: '닉네임',controller: nicknameController!,focusNode: nicknameNode,),
+          CustomTFT(labelText: '닉네임',controller: nicknameController!,focusNode: nicknameNode,),
           SizedBox(height: 5,),
-          AuthTFT(labelText: '이메일',controller: emailController!,focusNode: emailNode,),
+          CustomTFT(labelText: '이메일',controller: emailController!,focusNode: emailNode,),
           SizedBox(height: 5),
-          AuthTFT(labelText: '비밀번호',controller: pwController!,focusNode: pwNode,),
+          CustomTFT(labelText: '비밀번호',controller: pwController!,focusNode: pwNode,),
           SizedBox(height: 10),
           StandardButton(title : '이메일로 간편 가입', function : (){}),
           SizedBox(height: 30,),
