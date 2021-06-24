@@ -41,10 +41,11 @@ class _SettingPageState extends State<SettingPage>{
                  width: 45,
                  height: 45,
                  alignment: Alignment.center,
+                 margin: EdgeInsets.only(top: 3),
                  child: Image.asset('assets/images/setting/user.png',fit: BoxFit.cover,),
                ),
                title: Text('아무개12345678님',style: AppThemes.textTheme.bodyText1,),
-               subtitle: Text('탭하여 닉네임을 변경할 수 있어요!',style: AppThemes.textTheme.bodyText1,),
+               subtitle: Text('탭하여 닉네임을 변경할 수 있어요!',style: AppThemes.textTheme.bodyText2!.copyWith(color: Colors.grey),),
              ),
            ),
 
@@ -88,6 +89,7 @@ class _SettingPageState extends State<SettingPage>{
   Widget itemList(int index){
     return Container(
       height: 60,
+
       child: ListTile(
         title: Text(crmMenuList[index],style: AppThemes.textTheme.subtitle2,),
       ),
@@ -97,6 +99,7 @@ class _SettingPageState extends State<SettingPage>{
   Widget settingListItem(int index){
     return Container(
       height : 60,
+      alignment: Alignment.center,
       child: ListTile(
         onTap: (index != 2) ? null : (){print('aa');},
         title: Text(settingList[index],style: AppThemes.textTheme.subtitle2,),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timetracker/ui/views/home/home_page.dart';
 import 'package:timetracker/ui/views/setting/setting_page.dart';
+import 'package:timetracker/ui/views/statistics/total_statistics_page.dart';
 import 'home/schedule_list/schedule_list_page.dart';
 
 class MainPage extends StatefulWidget{
@@ -90,7 +91,7 @@ class _MainPageState extends State<MainPage>{
         return [
           HomePage(),
           ScheduleListPage(),
-          Container(color: Colors.blue,),
+          TotalReportPage(),
           SettingPage()
         ].elementAt(index);
       },
