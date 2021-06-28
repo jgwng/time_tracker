@@ -29,35 +29,26 @@ class WheelCircle extends CustomPainter {
 
     final shortNeedle = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1
+      ..strokeWidth = 3
       ..color = Colors.black;
 
     final longNeedle = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2
+      ..strokeWidth = 3
       ..color = Colors.black;
 
     // canvas.drawCircle(Offset(0, 0), wheelSize / 2, wheelBorder);
     // canvas.drawLine(Offset(0, -50), Offset(0, 0),
     //     wheelBorder); // <- this line is drawn just to help debug the angle. Comment this in prod.
 
-    for (double i = 0; i <= 360; i++) {
-      if (i % 20 != 0 && i % 10 == 0) {
+    for (double i = 150; i <= 390; i++) {
+      if (i % 10 != 0 && i % 5 == 0) {
         canvas.drawLine(
-            Offset(( wheelSize / 2) * cos(degreeToRadians(i)),
-                ( wheelSize / 2) * sin(degreeToRadians(i))),
-            Offset((( wheelSize / 2) - longNeedleHeight) * cos(degreeToRadians(i)),
-                (( wheelSize / 2) - longNeedleHeight) * sin(degreeToRadians(i))),
+            Offset(( wheelSize / 2) * cos(degreeToRadians(i) ),
+                ( wheelSize / 2) * sin(degreeToRadians(i) )),
+            Offset(((wheelSize / 2) - longNeedleHeight) * cos(degreeToRadians(i) ),
+                ((wheelSize / 2) - longNeedleHeight) * sin(degreeToRadians(i))),
             longNeedle);
-      } else {
-        if (i % 5 == 0) {
-          canvas.drawLine(
-              Offset(( wheelSize / 2) * cos(degreeToRadians(i)),
-                  ( wheelSize / 2) * sin(degreeToRadians(i))),
-              Offset((( wheelSize / 2) - shortNeedleHeight) * cos(degreeToRadians(i)),
-                  (( wheelSize / 2) - shortNeedleHeight) * sin(degreeToRadians(i))),
-              shortNeedle);
-        }
       }
     }
   }
