@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/ui/views/statistics/detail_chart_page.dart';
 import 'package:timetracker/ui/views/statistics/report_chart_painter.dart';
 
 class TotalReportPage extends StatefulWidget{
@@ -72,7 +73,11 @@ class _TotalReportPageState extends State<TotalReportPage>{
                  ),
                  elevation: MaterialStateProperty.all<double>(0.0),
                ),
-               onPressed: () async {},
+               onPressed: () async {
+                 Navigator.push(context, MaterialPageRoute(builder: (_) => DetailChartPage()));
+
+
+               },
                child: Text('전체 보기',style: AppThemes.textTheme.headline1!.copyWith(color: Colors.white)),
              )
          )
