@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/gestures.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:timetracker/constants/app_themes.dart';
 class DetailChartPage extends StatefulWidget{
   final List<Color> availableColors = [
     Colors.purpleAccent,
@@ -22,73 +23,170 @@ class _DetailChartPageState extends State<DetailChartPage> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
-
+  bool? isWeek;
   bool isPlaying = false;
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    isWeek = true;
+  }
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1,
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-        color: const Color(0xff81e5cd),
-        child: Stack(
-          children: <Widget>[
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
+        centerTitle: true, elevation: 0,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment : CrossAxisAlignment.start,
+          children: [
             Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                  Text(
-                    'Mingguan',
-                    style: TextStyle(
-                        color: const Color(0xff0f4a3c), fontSize: 24, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(
-                    'Grafik konsumsi kalori',
-                    style: TextStyle(
-                        color: const Color(0xff379982), fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 38,
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: BarChart(
-                        isPlaying ? randomData() : mainBarData(),
-                        swapAnimationDuration: animDuration,
+              padding: EdgeInsets.only(left: 24,top: 20,bottom: 20),
+              child: Text('Statistics',style: AppThemes.textTheme.headline1,),
+            ),
+            selectWorM(),
+            SizedBox(height: 20,),
+            Container(
+              width : double.infinity,
+              height  : 300,
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                color: const Color(0xff81e5cd),
+                child: Stack(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.max,
+                        children: <Widget>[
+                          Text(
+                            'Mingguan',
+                            style: TextStyle(
+                                color: const Color(0xff0f4a3c), fontSize: 24, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            'Grafik konsumsi kalori',
+                            style: TextStyle(
+                                color: const Color(0xff379982), fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(
+                            height: 38,
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                              child: BarChart(
+                                isPlaying ? randomData() : mainBarData(),
+                                swapAnimationDuration: animDuration,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: IconButton(
+                          icon: Icon(
+                            isPlaying ? Icons.pause : Icons.play_arrow,
+                            color: const Color(0xff0f4a3c),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              isPlaying = !isPlaying;
+                              if (isPlaying) {
+                                refreshState();
+                              }
+                            });
+                          },
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: Icon(
-                    isPlaying ? Icons.pause : Icons.play_arrow,
-                    color: const Color(0xff0f4a3c),
-                  ),
-                  onPressed: () {
-                    setState(() {
-                      isPlaying = !isPlaying;
-                      if (isPlaying) {
-                        refreshState();
-                      }
-                    });
-                  },
+            SizedBox(height: 20,),
+            Container(
+              width : double.infinity,
+              height  : 180,
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: 24,right:24,top:24),
+                      child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text('하루 통계',style: AppThemes.textTheme.subtitle1,),
+                        Text('2021/07/01',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey),)
+                      ],
+                    ),
+                    ),
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 24),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 80,
+
+                            alignment: Alignment.center,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text('10개',style: AppThemes.textTheme.headline1!.copyWith(
+                                  fontSize: 30
+                                ),),
+                                SizedBox(height:10),
+                                Text('전체 계획수',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey))
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 80,
+                            margin: EdgeInsets.symmetric(horizontal: 45),
+                            child: VerticalDivider(width: 1,thickness: 2,color: Colors.black,),
+                          ),
+                          Container(
+                            width: 80,
+
+                            alignment: Alignment.center,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text('10개',style: AppThemes.textTheme.headline1!.copyWith(
+                                    fontSize: 30
+                                ),),
+                                SizedBox(height:10),
+                                Text('전체 계획수',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey))
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+
+                  ],
                 ),
               ),
             )
@@ -97,6 +195,66 @@ class _DetailChartPageState extends State<DetailChartPage> {
       ),
     );
   }
+
+  Widget selectWorM(){
+    return Container(
+      width: double.infinity,
+      height: 60,
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      decoration: BoxDecoration(
+        color: Colors.grey[200],
+        borderRadius: BorderRadius.circular(10.0)
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: GestureDetector(
+              onTap: (){
+                setState(() {
+                  isWeek = !isWeek!;
+                });
+              },
+              child: Container(
+                height: 45,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color : isWeek! ? Colors.white : Colors.transparent,
+                  borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Text('주별 보기',style: AppThemes.textTheme.bodyText1!.copyWith(
+                    color : isWeek! ? Colors.black : Colors.grey
+                ),),
+              ),
+            )
+          ),
+          SizedBox(width:20),
+          Expanded(
+              child: GestureDetector(
+                onTap: (){
+                  setState(() {
+                    isWeek = !isWeek!;
+                  });
+                },
+                child: Container(
+                  height: 45,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      color : !isWeek! ? Colors.white : Colors.transparent,
+                      borderRadius: BorderRadius.circular(10.0)
+                  ),
+                  child: Text('월별 보기',style: AppThemes.textTheme.bodyText1!.copyWith(
+                    color : !isWeek! ? Colors.black : Colors.grey
+                  ),),
+                ),
+              )
+          )
+        ],
+      ),
+    );
+  }
+
 
   BarChartGroupData makeGroupData(
       int x,
