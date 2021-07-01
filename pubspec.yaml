@@ -72,6 +72,8 @@ flutter:
     - assets/animations/clock_animation.json
     - assets/images/auth/stopwatch.png
     - assets/images/setting/user.png
+    - assets/images/badge/bad.png
+    - assets/images/badge/good.png
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

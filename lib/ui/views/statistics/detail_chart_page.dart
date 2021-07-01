@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/ui/widgets/progress_circle.dart';
 class DetailChartPage extends StatefulWidget{
   final List<Color> availableColors = [
     Colors.purpleAccent,
@@ -184,8 +185,52 @@ class _DetailChartPageState extends State<DetailChartPage> {
                           ),
                         ],
                       ),
-                    )
+                    ),
 
+
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20,),
+            Container(
+              width: double.infinity,
+              height: 300,
+              padding: EdgeInsets.symmetric(horizontal: 24),
+              child: Card(
+                elevation: 2,
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('최고 / 최저 달성율',style: AppThemes.textTheme.bodyText1,),
+                    SizedBox(height: 10,),
+                    ListTile(
+                      leading: Container(
+                        width: 40,
+                        height : 40,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.blue[200],
+                        ),
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          height : 30,width: 30,
+                          child: Image.asset('assets/images/badge/good.png',width: 20,height: 20,fit: BoxFit.contain,),
+                        ),
+                      ),
+                      title: Text('운동하기',style: AppThemes.textTheme.subtitle1,),
+                      subtitle: Text('11:00 ~ 12:00',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey),),
+                      trailing: Container(
+                        width: 20,
+                        height: 20,
+                        margin: EdgeInsets.only(right: 20),
+                        child: CustomPaint(
+                          painter: LevelProgressCircle(),
+                          foregroundPainter: LevelProgressArc(0.3),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
