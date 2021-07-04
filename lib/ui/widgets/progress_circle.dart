@@ -21,7 +21,7 @@ class LevelProgressCircle extends CustomPainter {
 
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0;
-    canvas.drawCircle(center, 25.0, paint);
+    canvas.drawCircle(center, 28.0, paint);
   }
 
   @override
@@ -43,7 +43,7 @@ class LevelProgressArc extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 4.0
       ..strokeCap = StrokeCap.round;
-    canvas.drawArc(Rect.fromCircle(center: center, radius: 25.0), 4.71,
+    canvas.drawArc(Rect.fromCircle(center: center, radius: 28.0), 4.71,
         percent * 6.28, false, paint);
 
   }

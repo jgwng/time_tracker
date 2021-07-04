@@ -203,34 +203,91 @@ class _DetailChartPageState extends State<DetailChartPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('최고 / 최저 달성율',style: AppThemes.textTheme.bodyText1,),
-                    SizedBox(height: 10,),
+                    Padding(
+                      padding: EdgeInsets.only(left: 24,top:24),
+                      child : Text('최고 / 최저 달성율',style: AppThemes.textTheme.subtitle1,)
+                    ),
+                    SizedBox(height: 20,),
                     ListTile(
                       leading: Container(
-                        width: 40,
-                        height : 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.blue[200],
-                        ),
+                        width: 50,
+                        height: 25,
                         alignment: Alignment.center,
-                        child: SizedBox(
-                          height : 30,width: 30,
-                          child: Image.asset('assets/images/badge/good.png',width: 20,height: 20,fit: BoxFit.contain,),
-                        ),
-                      ),
-                      title: Text('운동하기',style: AppThemes.textTheme.subtitle1,),
-                      subtitle: Text('11:00 ~ 12:00',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey),),
-                      trailing: Container(
-                        width: 20,
-                        height: 20,
-                        margin: EdgeInsets.only(right: 20),
+                        margin: EdgeInsets.only(top:8),
                         child: CustomPaint(
                           painter: LevelProgressCircle(),
                           foregroundPainter: LevelProgressArc(0.3),
+                          child: RichText(
+                            text: TextSpan(
+                                text: '30',
+                                style: AppThemes.textTheme.subtitle1,
+                                children: [
+                                  TextSpan(text : '%',style: AppThemes.textTheme.subtitle2)
+                                ]
+                            ),
+                          ),
                         ),
                       ),
-                    )
+                      title: Padding(
+                        padding: EdgeInsets.only(left:15),
+                          child: Text('운동하기',style: AppThemes.textTheme.subtitle1,)
+                      ),
+                      subtitle: Padding(
+                          padding: EdgeInsets.only(left:15),
+                          child: Text('11:00 ~ 12:00',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey),)
+                      ),
+                      trailing: Container(
+                        width: 40,
+                        height : 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                        ),
+                        alignment: Alignment.center,
+                        child: Image.asset('assets/images/badge/good.png',width: 40,height: 40,fit: BoxFit.contain,),
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    ListTile(
+                      leading: Container(
+                        width: 50,
+                        height: 25,
+                        alignment: Alignment.center,
+                        margin: EdgeInsets.only(top:8),
+                        child: CustomPaint(
+                          painter: LevelProgressCircle(),
+                          foregroundPainter: LevelProgressArc(0.3),
+                          child: RichText(
+                            text: TextSpan(
+                                text: '30',
+                                style: AppThemes.textTheme.subtitle1,
+                                children: [
+                                  TextSpan(text : '%',style: AppThemes.textTheme.subtitle2)
+                                ]
+                            ),
+                          ),
+                        ),
+                      ),
+                      title: Padding(
+                          padding: EdgeInsets.only(left:15),
+                          child: Text('운동하기',style: AppThemes.textTheme.subtitle1,)
+                      ),
+                      subtitle: Padding(
+                          padding: EdgeInsets.only(left:15),
+                          child: Text('11:00 ~ 12:00',style: AppThemes.textTheme.bodyText1!.copyWith(color: Colors.grey),)
+                      ),
+                      trailing: Container(
+                        width: 40,
+                        height : 40,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+
+                        ),
+                        alignment: Alignment.center,
+                        child: Image.asset('assets/images/badge/good.png',width: 40,height: 40,fit: BoxFit.contain,),
+                      ),
+                    ),
+
                   ],
                 ),
               ),

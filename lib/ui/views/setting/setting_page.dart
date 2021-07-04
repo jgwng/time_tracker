@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/utils/show_dialog.dart';
 
 class SettingPage extends StatefulWidget{
   @override
@@ -37,6 +38,9 @@ class _SettingPageState extends State<SettingPage>{
                borderRadius: BorderRadius.circular(8.0)
              ),
              child: ListTile(
+               onTap: () async{
+                 await standardDialog(context);
+               },
                leading:Container(
                  width: 45,
                  height: 45,
