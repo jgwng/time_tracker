@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/service/bottom_sheet/bottom_sheet.dart';
 
 class AddSchedulePage extends StatefulWidget{
   @override
@@ -40,13 +41,13 @@ class _AddSchedulePageState extends State<AddSchedulePage>{
           crossAxisAlignment: CrossAxisAlignment.start,
           children:[
           SizedBox(height: 20,),
-          Text('제목'),
+          Text('제목',style: AppThemes.textTheme.subtitle1,),
           SizedBox(height: 10,),
           TextField(
             controller: titleController,
           ),
           SizedBox(height: 20,),
-          Text('간단 메모'),
+          Text('간단 메모',style: AppThemes.textTheme.subtitle1),
           SizedBox(height: 10,),
           TextField(
             controller: contentController,
@@ -58,8 +59,8 @@ class _AddSchedulePageState extends State<AddSchedulePage>{
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment : CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10,),
-                    Text('시작 시간'),
+                    SizedBox(height: 20,),
+                    Text('시작 시간',style: AppThemes.textTheme.subtitle2,),
                     SizedBox(height: 10,),
                     Container(
                       width: 80,
@@ -76,16 +77,24 @@ class _AddSchedulePageState extends State<AddSchedulePage>{
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment : CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 20,),
+                    Text('종료 시간',style: AppThemes.textTheme.subtitle2,),
                     SizedBox(height: 10,),
-                    Text('시작 시간'),
-                    SizedBox(height: 10,),
-                    Container(
-                      width: 80,
-                      alignment: Alignment.center,
-                      color: Colors.grey[200],
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Text('2020'),
+                    GestureDetector(
+                      onTap: () async{
+                        var result = await onStartNEndTimePickerBottomSheet(context);
+                        print(result);
+                      },
+                      child : Container(
+                        width: 80,
+                        alignment: Alignment.center,
+                        color: Colors.grey[200],
+                        padding: EdgeInsets.symmetric(vertical: 10),
+                        child: Text('2020'),
+                      )
                     )
+
+
                   ],
                 ),
               ),
