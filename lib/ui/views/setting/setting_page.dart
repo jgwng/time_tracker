@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/ui/widgets/app_bar/home_app_bar.dart';
 import 'package:timetracker/utils/show_dialog.dart';
 
 class SettingPage extends StatefulWidget{
@@ -19,11 +20,7 @@ class _SettingPageState extends State<SettingPage>{
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-       appBar : AppBar(
-         backgroundColor: Colors.white,
-         title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
-         centerTitle: true, elevation: 0,
-       ),
+     appBar:CustomAppBar(),
      body: SingleChildScrollView(
        padding: EdgeInsets.symmetric(horizontal: 24),
        child: Column(

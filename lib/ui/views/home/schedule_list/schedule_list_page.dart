@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:timetracker/constants/app_themes.dart';
 import 'package:timetracker/ui/views/home/schedule_list/add_schedule_page.dart';
+import 'package:timetracker/ui/widgets/app_bar/home_app_bar.dart';
 
 class ScheduleListPage extends StatefulWidget{
   @override
@@ -22,11 +23,7 @@ class _ScheduleListPageState extends State<ScheduleListPage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
-        centerTitle: true, elevation: 0,
-      ),
+      appBar:CustomAppBar(),
       body:  Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment : CrossAxisAlignment.start,

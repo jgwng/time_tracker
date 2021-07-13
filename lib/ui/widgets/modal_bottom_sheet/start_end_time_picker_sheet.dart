@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:timetracker/constants/app_themes.dart';
 import 'package:timetracker/ui/widgets/standard_button.dart';
 class StartEndTimePickerSheet extends StatefulWidget {
+ StartEndTimePickerSheet({required this.title});
+ final String title;
   @override
   _StartEndTimePickerSheetState createState()=> _StartEndTimePickerSheetState();
 }
@@ -40,9 +42,8 @@ class _StartEndTimePickerSheetState extends State<StartEndTimePickerSheet>{
             padding: EdgeInsets.only(left: 28.0,top: 5),
             alignment: Alignment.centerLeft,
             height: 48,
-
             child:Text(
-              '시작시간 설정하기', style:  AppThemes.textTheme.subtitle1!.copyWith(fontWeight: FontWeight.w400,color: const Color.fromRGBO(42, 42, 42, 1.0)),
+              '${widget.title} 설정하기', style:  AppThemes.textTheme.subtitle1!.copyWith(fontWeight: FontWeight.w400,color: const Color.fromRGBO(42, 42, 42, 1.0)),
             ),
           ),
           Container(
@@ -53,6 +54,7 @@ class _StartEndTimePickerSheetState extends State<StartEndTimePickerSheet>{
               initialDateTime: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day, 0, 0),
               minuteInterval: 10,
               maximumDate: DateTime.now(),
+
               backgroundColor: Colors.transparent,
               onDateTimeChanged: (value) {
                 setState(() {

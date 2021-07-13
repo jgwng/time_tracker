@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/ui/widgets/app_bar/home_app_bar.dart';
 import 'package:timetracker/ui/widgets/progress_circle.dart';
 class DetailChartPage extends StatefulWidget{
   final List<Color> availableColors = [
@@ -35,11 +36,7 @@ class _DetailChartPageState extends State<DetailChartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
-        centerTitle: true, elevation: 0,
-      ),
+      appBar:CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment : CrossAxisAlignment.start,

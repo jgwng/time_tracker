@@ -24,7 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   quick_actions: ^0.6.0+2
-
+  flutter_riverpod: ^0.14.0+3
+  get_it: ^7.1.3
   #Notification
   flutter_media_notification:
     git:

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:timetracker/constants/app_themes.dart';
+import 'package:timetracker/ui/widgets/app_bar/home_app_bar.dart';
 import 'package:timetracker/ui/widgets/state_progress_circle.dart';
 
 class HomePage extends StatefulWidget{
@@ -15,11 +16,7 @@ class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
-        centerTitle: true, elevation: 0,
-      ),
+      appBar:CustomAppBar(),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24),
         child: Column(

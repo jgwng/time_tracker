@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:timetracker/constants/app_themes.dart';
 import 'package:timetracker/ui/views/statistics/detail_chart_page.dart';
 import 'package:timetracker/ui/views/statistics/report_chart_painter.dart';
+import 'package:timetracker/ui/widgets/app_bar/home_app_bar.dart';
 
 class TotalReportPage extends StatefulWidget{
   @override
@@ -13,11 +14,7 @@ class _TotalReportPageState extends State<TotalReportPage>{
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-     appBar : AppBar(
-       backgroundColor: Colors.white,
-       title: Text('CATCHTIME',style: TextStyle(fontFamily: 'Staatliches',fontSize: 30,fontWeight: FontWeight.w500,color: Colors.black),),
-       centerTitle: true, elevation: 0,
-     ),
+     appBar:CustomAppBar(),
      body :Column(
        children: [
          SizedBox(height: 30,),
